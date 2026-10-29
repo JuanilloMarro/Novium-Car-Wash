@@ -1,0 +1,239 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ---------- Palette: the only place where raw color values live ---------- */
+@theme static {
+  /* Brand scale (placeholder until the brand is defined) */
+  --color-navy-50: #f2f5fa;
+  --color-navy-100: #e3e9f3;
+  --color-navy-200: #c6d2e6;
+  --color-navy-300: #9db0d1;
+  --color-navy-400: #6d87b6;
+  --color-navy-500: #4a669c;
+  --color-navy-600: #385082;
+  --color-navy-700: #2d406a;
+  --color-navy-800: #233256;
+  --color-navy-900: #1a2540;
+  --color-navy-950: #0f1628;
+}
+
+/* ---------- Semantic tokens (shadcn contract); tenants may override only --primary* ---------- */
+:root {
+  --radius: 0.75rem;
+
+  --background: #ffffff;
+  --foreground: var(--color-navy-900);
+  --card: #ffffff;
+  --card-foreground: var(--color-navy-900);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-navy-900);
+  --primary: var(--color-navy-900);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-navy-50);
+  --secondary-foreground: var(--color-navy-900);
+  --muted: var(--color-navy-50);
+  --muted-foreground: color-mix(in oklab, var(--color-navy-700) 60%, transparent);
+  --subtle-foreground: color-mix(in oklab, var(--color-navy-700) 40%, transparent);
+  --accent: var(--color-navy-50);
+  --accent-foreground: var(--color-navy-900);
+  --destructive: var(--color-rose-600);
+  --destructive-foreground: #ffffff;
+  --border: var(--color-navy-100);
+  --input: var(--color-navy-200);
+  --ring: var(--color-navy-400);
+
+  /* Step between staggered list items */
+  --stagger-step: 40ms;
+  /* Height of the faded edge on scrollable areas */
+  --fade-size: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@theme {
+  /* System font: zero download on low-end phones */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Text roles: size + line height + weight + tracking (ink is added by type-* utilities) */
+  --text-display: 2rem;
+  --text-display--line-height: 1;
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: -0.02em;
+  --text-page: 1.375rem;
+  --text-page--line-height: 1;
+  --text-page--font-weight: 700;
+  --text-page--letter-spacing: -0.01em;
+  --text-heading: 1.125rem;
+  --text-heading--line-height: 1.375;
+  --text-heading--font-weight: 700;
+  --text-heading--letter-spacing: -0.01em;
+  --text-title: 0.9375rem;
+  --text-title--line-height: 1.375;
+  --text-title--font-weight: 600;
+  --text-row: 0.875rem;
+  --text-row--line-height: 1.375;
+  --text-row--font-weight: 700;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.375;
+  --text-body--font-weight: 500;
+  --text-option: 0.875rem;
+  --text-option--line-height: 1.375;
+  --text-option--font-weight: 600;
+  --text-value: 0.875rem;
+  --text-value--line-height: 1.375;
+  --text-value--font-weight: 700;
+  --text-field: 0.75rem;
+  --text-field--line-height: 1.375;
+  --text-field--font-weight: 700;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.375;
+  --text-label--font-weight: 600;
+  --text-meta: 0.75rem;
+  --text-meta--line-height: 1.375;
+  --text-meta--font-weight: 400;
+  --text-status: 0.6875rem;
+  --text-status--line-height: 1.375;
+  --text-status--font-weight: 700;
+  --text-status--letter-spacing: 0.02em;
+  --text-micro: 0.625rem;
+  --text-micro--line-height: 1.375;
+  --text-micro--font-weight: 600;
+  --text-micro--letter-spacing: 0.06em;
+  /* 16px inputs: no iOS focus zoom */
+  --text-input: 1rem;
+  --text-input--line-height: 1.375;
+
+  /* Touch target (44px): size-tap, min-h-tap, h-tap */
+  --spacing-tap: 2.75rem;
+
+  /* Navy-tinted shadows; nothing uses black or gray shadows */
+  --shadow-2xs: 0 1px 0 0 rgb(26 37 64 / 0.04);
+  --shadow-xs: 0 1px 2px 0 rgb(26 37 64 / 0.06);
+  --shadow-sm: 0 1px 3px 0 rgb(26 37 64 / 0.08), 0 1px 2px -1px rgb(26 37 64 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(26 37 64 / 0.08), 0 2px 4px -2px rgb(26 37 64 / 0.08);
+  --shadow-lg: 0 10px 15px -3px rgb(26 37 64 / 0.1), 0 4px 6px -4px rgb(26 37 64 / 0.08);
+
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Motion catalogue: every animation has a documented use */
+  --animate-reveal: reveal 300ms var(--ease-out) both;
+  --animate-skeleton-in: fade-in 200ms var(--ease-out) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-nudge-down: nudge-down 1.2s var(--ease-in-out) infinite;
+
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+  @keyframes nudge-down {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+}
+
+/* ---------- Text roles: the only typography allowed outside components/ui and components/app ---------- */
+@utility type-display { @apply text-display text-foreground tabular-nums; }
+@utility type-page { @apply text-page text-foreground; }
+@utility type-heading { @apply text-heading text-foreground; }
+@utility type-title { @apply text-title text-foreground; }
+@utility type-row { @apply text-row text-foreground; }
+@utility type-body { @apply text-body text-muted-foreground; }
+@utility type-option { @apply text-option text-foreground; }
+@utility type-value { @apply text-value tabular-nums; }
+@utility type-field { @apply text-field text-foreground; }
+@utility type-label { @apply text-label text-muted-foreground; }
+@utility type-meta { @apply text-meta text-subtle-foreground; }
+@utility type-status { @apply text-status; }
+@utility type-micro { @apply text-micro text-subtle-foreground uppercase; }
+
+/* Multi-line reading text, applied after a role */
+@utility flow-text { @apply leading-relaxed; }
+
+/* Every input, textarea, select and search box */
+@utility field-text {
+  @apply text-input font-bold text-foreground;
+  &::placeholder { @apply font-medium text-muted-foreground; }
+}
+
+/* ---------- Surfaces (solid: backdrop-blur is too expensive on low-end phones) ---------- */
+@utility surface { @apply bg-card border border-border shadow-xs; }
+@utility surface-strong { @apply bg-card border border-navy-200 shadow-sm; }
+@utility surface-subtle { @apply bg-muted; }
+
+/* ---------- Layout helpers ---------- */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+@utility scroll-fade-y {
+  mask-image: linear-gradient(to bottom, transparent, black var(--fade-size), black calc(100% - var(--fade-size)), transparent);
+}
+@utility pt-safe { padding-top: env(safe-area-inset-top); }
+@utility pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+@utility px-safe {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* ---------- Motion helpers ---------- */
+@utility stagger {
+  animation: var(--animate-reveal);
+  animation-delay: calc(var(--i, 0) * var(--stagger-step));
+}
+@utility skeleton-shimmer {
+  background-image: linear-gradient(90deg, var(--color-navy-50) 25%, var(--color-navy-100) 50%, var(--color-navy-50) 75%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
